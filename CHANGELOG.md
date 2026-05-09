@@ -21,7 +21,12 @@ Initial port from XMPlayer (Lua/Love2D) to C++17 / SDL3 / GLES2.
 - mp3, wav, flac, ogg, m4a (miniaudio)
 - Tracker modules via libxmp: mod, xm, it, s3m, mtm, stm, 669, far, ult,
   ams, med, okt, dbm, liq, mdl, mt2, pt36, ptm, rtm, gdm, imf, dsm, psm
-- Chiptune via libgme: nsf, nsfe, gbs, spc, vgm, vgz, gym, ay, hes, sap, kss
+- Console chiptune via libgme: nsf, nsfe, gbs, spc, vgm, vgz, gym, ay, hes,
+  sap, kss
+- Atari ST chiptune via StSound (bundled, LGPL): ym, sndh
+- Commodore 64 SID via cSID-light (bundled, WTFPL): sid
+- Multi-track chiptune sub-tune expansion (file.ext#N entries, capped 99)
+- VGM/VGZ GD3 metadata parsing (track, game, system, author, dumper, date)
 
 ### Video formats
 - All libmpv-supported (mp4, mkv, avi, mov, wmv, webm, etc.)
