@@ -30,7 +30,7 @@ static std::mutex g_progress_mutex;
 static std::thread g_thread;
 
 static const std::vector<std::string> EXT_MUSIC = {
-    ".mp3", ".wav", ".flac", ".ogg", ".m4a",
+    ".mp3", ".wav", ".flac", ".ogg", ".m4a", ".opus",
     // Trackers (libxmp)
     ".mod", ".xm", ".it", ".s3m", ".mtm", ".stm", ".669", ".far", ".ult",
     ".ams", ".med", ".okt", ".dbm", ".liq", ".mdl", ".mt2", ".pt36",

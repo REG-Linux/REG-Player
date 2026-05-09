@@ -17,7 +17,10 @@ The following third-party components are used. Each retains its own license.
 | libmpv | 0.37 | LGPL-2.1+ | https://mpv.io |
 | TagLib | 1.13.1 | LGPL-2.1 / MPL-1.1 | https://taglib.org |
 | libxmp | 4.6.0 | MIT | https://xmp.sourceforge.net |
-| libgme (Game Music Emu) | 0.6.3 | LGPL-2.1 | https://bitbucket.org/mpyne/game-music-emu |
+| libgme (Game Music Emu) | 0.6.5 | LGPL-2.1+ | https://github.com/libgme/game-music-emu |
+| libopusfile | 0.12 | BSD-3-Clause | https://opus-codec.org |
+| libopus | 1.4 | BSD-3-Clause | https://opus-codec.org |
+| libogg | 1.3 | BSD-3-Clause | https://xiph.org/ogg |
 | libasound (ALSA) | system | LGPL-2.1 | https://www.alsa-project.org |
 | zlib | system | Zlib | https://zlib.net |
 

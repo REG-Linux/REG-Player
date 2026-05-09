@@ -22,6 +22,7 @@ pkg_check_modules(MPV REQUIRED IMPORTED_TARGET mpv)
 pkg_check_modules(ALSA REQUIRED IMPORTED_TARGET alsa)
 pkg_check_modules(XMP REQUIRED IMPORTED_TARGET libxmp)
 pkg_check_modules(GME REQUIRED IMPORTED_TARGET libgme)
+pkg_check_modules(OPUSFILE REQUIRED IMPORTED_TARGET opusfile)
 find_package(ZLIB REQUIRED)
 
 set(STSOUND_SRC
@@ -67,6 +68,7 @@ set(REG_SRC
     src/persist.cpp
     src/gamepad.cpp
     src/chiptune.cpp
+    src/opus_audio.cpp
     src/miniaudio_impl.c
     src/stb_image_write_impl.c
     src/stb_image_impl.c
@@ -88,6 +90,7 @@ target_link_libraries(regplayer PRIVATE
     PkgConfig::ALSA
     PkgConfig::XMP
     PkgConfig::GME
+    PkgConfig::OPUSFILE
     ZLIB::ZLIB
     stsound
     csid

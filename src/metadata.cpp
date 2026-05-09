@@ -12,11 +12,14 @@
 #include <taglib/attachedpictureframe.h>
 #include <taglib/fileref.h>
 #include <taglib/flacfile.h>
+#include <taglib/flacpicture.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/mpegfile.h>
+#include <taglib/opusfile.h>
 #include <taglib/tag.h>
 #include <taglib/taglib.h>
 #include <taglib/tpropertymap.h>
+#include <taglib/xiphcomment.h>
 
 namespace metadata {
 
@@ -174,6 +177,26 @@ Tags get_tags(const std::string& filepath) {
                 std::transform(mime.begin(), mime.end(), mime.begin(), ::tolower);
                 if (mime.find("png") != std::string::npos) t.cover_ext = "png";
                 else t.cover_ext = "jpg";
+            }
+        }
+    }
+    if (t.cover_data.empty()) {
+        // Ogg Opus: cover art lives in XiphComment as base64 METADATA_BLOCK_PICTURE.
+        std::string ext_lower = utils::get_extension(filepath);
+        std::transform(ext_lower.begin(), ext_lower.end(), ext_lower.begin(), ::tolower);
+        if (ext_lower == ".opus") {
+            TagLib::Ogg::Opus::File of(filepath.c_str(), true);
+            if (of.isValid() && of.tag()) {
+                const auto& pics = of.tag()->pictureList();
+                if (!pics.isEmpty()) {
+                    auto* pic = pics.front();
+                    auto bv = pic->data();
+                    t.cover_data.assign(bv.data(), bv.data() + bv.size());
+                    std::string mime = pic->mimeType().to8Bit();
+                    std::transform(mime.begin(), mime.end(), mime.begin(), ::tolower);
+                    if (mime.find("png") != std::string::npos) t.cover_ext = "png";
+                    else t.cover_ext = "jpg";
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 #include "music_player.h"
 #include "assets.h"
 #include "chiptune.h"
+#include "opus_audio.h"
 #include "common.h"
 #include "miniaudio.h"
 #include "metadata.h"
@@ -136,9 +137,16 @@ static bool load_track(const Track& t) {
         }
     }
 
-    // Chiptune/module path: decode whole file → stereo float for playback + mono float for visualizer.
-    if (chiptune::is_chiptune(t.path)) {
-        int sr = chiptune::decode_to_pcm(t.path, g_pcm_stereo, g_pcm, 300);
+    // Opus path: decode whole .opus file via libopusfile (always 48 kHz stereo).
+    // Routes through same g_chip_ds vtable since shape (pre-decoded f32 stereo
+    // + mono mix) is identical.
+    bool is_opus = opus_audio::is_opus(t.path);
+    bool is_chip = !is_opus && chiptune::is_chiptune(t.path);
+
+    if (is_opus || is_chip) {
+        int sr = is_opus
+            ? opus_audio::decode_to_pcm(t.path, g_pcm_stereo, g_pcm)
+            : chiptune::decode_to_pcm(t.path, g_pcm_stereo, g_pcm, 300);
         if (sr <= 0 || g_pcm.empty()) return false;
         g_pcm_sample_rate = sr;
         s.duration = (double)g_pcm.size() / (double)sr;

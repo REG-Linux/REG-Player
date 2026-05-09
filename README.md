@@ -23,6 +23,7 @@ Default scan root: `/userdata/medias`. Falls back to `~/Music`, `~/Videos`, `~/P
 | Class | Backend | Extensions |
 |---|---|---|
 | Standard audio | miniaudio | `mp3` `wav` `flac` `ogg` `m4a` |
+| Opus | libopusfile | `opus` |
 | Trackers (23) | libxmp | `mod` `xm` `it` `s3m` `mtm` `stm` `669` `far` `ult` `ams` `med` `okt` `dbm` `liq` `mdl` `mt2` `pt36` `ptm` `rtm` `gdm` `imf` `dsm` `psm` |
 | Console chiptune (11) | libgme | `nsf` `nsfe` `gbs` `spc` `vgm` `vgz` `gym` `ay` `hes` `sap` `kss` |
 | Atari ST | StSound (bundled, LGPL) | `ym` `sndh` |
@@ -39,7 +40,7 @@ System deps (Debian/Ubuntu):
 ```sh
 sudo apt install libsdl3-dev libsdl3-image-dev libsdl3-ttf-dev \
                  libmpv-dev libtaglib-dev \
-                 libxmp-dev libgme-dev \
+                 libxmp-dev libgme-dev libopusfile-dev \
                  libasound2-dev zlib1g-dev \
                  cmake pkg-config
 ```
@@ -82,6 +83,7 @@ Enable via `make menuconfig` → Frontend → REG-Player.
 | Tags | TagLib | LGPL-2.1 / MPL-1.1 | system |
 | Trackers | libxmp | MIT | system |
 | Console chiptune | libgme | LGPL-2.1+ | system |
+| Opus | libopusfile | BSD-3 | system |
 | Atari ST | StSound | LGPL | bundled |
 | C64 SID | cSID-light | WTFPL | bundled |
 | Video | libmpv | LGPL-2.1+ | system |
@@ -134,7 +136,7 @@ NOTICES.md       — third-party attributions
 - Brightness OSD toast — coded, no easy external trigger on dev machine
 - Real handheld deploy — arm64 portable tarball ready, no device tested yet
 - Robustness edge cases untested: killed mid-scan, disk-full thumbnail write, non-ASCII filenames, broken ID3 tags, large libraries (1000+)
-- Format extensions deferred: Opus, WebP, AVIF, HVL/AHX (Amiga)
+- Format extensions deferred: WebP, AVIF, HVL/AHX (Amiga)
 
 ## License
 

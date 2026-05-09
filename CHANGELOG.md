@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.1 — 2026-05-10
+
+### Added
+- Opus playback via libopusfile (`.opus` files at any sample rate, decoded
+  to 48 kHz stereo internally)
+- Opus cover art extraction via TagLib XiphComment METADATA_BLOCK_PICTURE
+
 ## v0.1 — 2026-05-09
 
 Initial port from XMPlayer (Lua/Love2D) to C++17 / SDL3 / GLES2.
