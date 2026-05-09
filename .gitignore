@@ -1,0 +1,13 @@
+build/
+build-arm64/
+build-*/
+*.o
+*.a
+*.so
+*.so.*
+.cache/
+compile_commands.json
+.vscode/
+.idea/
+*.swp
+.DS_Store

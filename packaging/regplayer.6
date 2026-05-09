@@ -1,0 +1,46 @@
+.TH REGPLAYER 6 "2026-05-09" "v0.1" "Games"
+.SH NAME
+regplayer \- XMB-inspired media suite for Linux handhelds
+.SH SYNOPSIS
+.B regplayer
+[\fB\-\-help\fR] [\fB\-\-version\fR]
+.SH DESCRIPTION
+.B regplayer
+is a media browser and player with an XrossMediaBar-style interface.
+It plays music (mp3, flac, ogg, wav, m4a, plus tracker modules and chiptune
+formats via libxmp/libgme), videos (via embedded libmpv), and photos.
+.PP
+By default it scans
+.I /userdata/medias
+for content. If that path does not exist, it falls back to
+.IR ~/Music ", " ~/Videos ", and " ~/Pictures .
+Override per-type via Settings > Media Directories.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Show usage and exit.
+.TP
+.BR \-v ", " \-\-version
+Print version and exit.
+.SH FILES
+.TP
+.I $XDG_CONFIG_HOME/regplayer/
+Settings, index, history, watched. Defaults to
+.IR ~/.config/regplayer .
+.TP
+.I $XDG_CACHE_HOME/regplayer/thumbnails/
+Generated photo + album cover thumbnails (PNG, 120px max edge).
+.TP
+.I /usr/local/share/regplayer/assets/
+Bundled icons, fonts, default wallpaper.
+.SH ENVIRONMENT
+.TP
+.B REG_ASSETS_DIR
+Override assets directory (for development).
+.SH CONTROLS
+Gamepad mapped via SDL3 directly. See on-screen help (X on XMB root).
+.SH AUTHOR
+REG-Player contributors. Derivative of XMPlayer by Atalay G\(:org\(:un.
+.SH SEE ALSO
+.BR mpv (1),
+.BR alsamixer (1)

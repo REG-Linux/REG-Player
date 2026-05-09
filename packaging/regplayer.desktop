@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=REG-Player
+GenericName=Media Suite
+Comment=XMB-inspired media suite for handhelds
+Exec=regplayer
+Icon=regplayer
+Terminal=false
+Categories=AudioVideo;Audio;Video;Player;
+Keywords=music;video;photo;chiptune;module;mpv;
+StartupNotify=false
