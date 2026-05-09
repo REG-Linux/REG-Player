@@ -1,5 +1,5 @@
-// Uses TagLib for tag + cover extraction. Folder cover heuristic mirrors metadata.lua.
-// Falls back to chiptune (libxmp/libgme) tag readers for module/chip formats.
+// TagLib-based tag + cover extraction; chiptune (libxmp/libgme/StSound/cSID)
+// fallbacks for module / chip formats.
 #include "metadata.h"
 #include "chiptune.h"
 #include "persist.h"

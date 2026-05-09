@@ -51,5 +51,6 @@ void update(float dt);
 const float* pcm();
 int pcm_count();
 int pcm_pos();
+int pcm_sample_rate();
 
 } // namespace music_player

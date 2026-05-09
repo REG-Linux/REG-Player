@@ -1,4 +1,4 @@
-// Direct port of indexing.lua scan flow + thumbnail generation via stb.
+// Async media scanner + thumbnail generator (stb_image_write).
 #include "indexing.h"
 #include "chiptune.h"
 #include "metadata.h"

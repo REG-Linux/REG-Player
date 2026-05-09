@@ -1,6 +1,8 @@
-// Direct port of background.lua. No blur shader (constraint). Wallpaper drawn plain.
+// Wallpaper, gradient, particles, PSP-style waves, audio visualizers.
 #include "background.h"
 #include "common.h"
+#include "fft.h"
+#include "music_player.h"
 #include "render.h"
 #include "settings.h"
 #include "theme.h"
@@ -227,21 +229,29 @@ void draw_with_music_state(bool music_active, bool music_playing, bool music_pau
         float total_width = (float)W;
         float bar_w = (total_width - (bars - 1) * gap) / bars;
         float start_x = (W - total_width) * 0.5f;
-        int total_samples = pcm_count;
-        int current_sample = std::max(0, pcm_pos);
         float paused_alpha = music_paused ? 0.35f : 1.0f;
+
+        // Real FFT spectrum. Take an N-sample window starting near the
+        // current playback cursor; clamp so we don't read past the buffer.
+        int win_start = std::max(0, pcm_pos);
+        if (win_start + fft::N > pcm_count) win_start = std::max(0, pcm_count - fft::N);
+        float spectrum[64] = {0};
+        if (pcm_count >= fft::N) {
+            fft::compute_bars(pcm + win_start, music_player::pcm_sample_rate(),
+                              spectrum, bars);
+        }
+
+        // Peak-hold + decay smoothing so bars don't flicker raw FFT noise.
+        static float held[64] = {0};
+        const float attack = 0.55f, decay = 0.12f;
         for (int i = 0; i < bars; ++i) {
-            float progress = (float)i / std::max(1, bars - 1);
-            int window_size = 480;
-            int window_start = current_sample + (int)(progress * 8192);
-            float energy = 0;
-            for (int j = 0; j < window_size; j += 24) {
-                int idx = std::min(total_samples - 1, window_start + j);
-                float sample = pcm[idx];
-                energy += sample * sample;
-            }
-            float rms = std::sqrt(energy / (window_size / 24.0f));
-            float strength = std::min(1.0f, rms * 5.2f);
+            float v = spectrum[i];
+            if (v > held[i]) held[i] += (v - held[i]) * attack;
+            else              held[i] += (v - held[i]) * decay;
+        }
+
+        for (int i = 0; i < bars; ++i) {
+            float strength = held[i];
             float bar_h = 8 + (strength * max_h);
             float x = start_x + i * (bar_w + gap);
             float y = bottom_y - bar_h;

@@ -1,4 +1,4 @@
-// main.cpp — port of main.lua. Same frame orchestration shape.
+// REG-Player entry point: window, frame loop, event dispatch.
 #include "common.h"
 #include "assets.h"
 #include "background.h"

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0 — 2026-05-10
+
+### Added
+- Real FFT spectrum visualizer (kissfft, log-binned 50 Hz–12 kHz, peak hold +
+  decay smoothing) — replaces synthetic time-window RMS bars
+
 ## v0.1.1 — 2026-05-10
 
 ### Added

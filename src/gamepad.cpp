@@ -46,7 +46,7 @@ std::string keycode_to_logical(SDL_Keycode k) {
     }
 }
 
-// Match xmplayer.gptk:
+// Logical-key bindings:
 // a -> enter (return), b -> backspace, x -> x, y -> y
 // l1 -> pageup, r1 -> pagedown, l2 -> l, r2 -> e
 // start -> return, select -> space

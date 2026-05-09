@@ -9,7 +9,6 @@ void shutdown();
 void on_event(const SDL_Event& e);
 
 // returns logical key string for SDL_Keycode or "" if unmapped.
-// Mirrors the xmplayer.gptk mapping (so xmb.lua keypressed strings work).
 std::string keycode_to_logical(SDL_Keycode k);
 
 // Translate gamepad button to logical key string.

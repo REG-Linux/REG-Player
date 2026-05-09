@@ -41,6 +41,13 @@ add_library(csid STATIC third_party/tinysid/csid-light.c)
 target_include_directories(csid PUBLIC ${CMAKE_SOURCE_DIR}/third_party/tinysid)
 target_compile_options(csid PRIVATE -w -Wno-implicit-function-declaration)
 
+add_library(kissfft STATIC
+    third_party/kissfft/kiss_fft.c
+    third_party/kissfft/kiss_fftr.c
+)
+target_include_directories(kissfft PUBLIC ${CMAKE_SOURCE_DIR}/third_party)
+target_compile_options(kissfft PRIVATE -w)
+
 set(REG_SRC
     src/main.cpp
     src/render.cpp
@@ -69,6 +76,7 @@ set(REG_SRC
     src/gamepad.cpp
     src/chiptune.cpp
     src/opus_audio.cpp
+    src/fft.cpp
     src/miniaudio_impl.c
     src/stb_image_write_impl.c
     src/stb_image_impl.c
@@ -94,6 +102,7 @@ target_link_libraries(regplayer PRIVATE
     ZLIB::ZLIB
     stsound
     csid
+    kissfft
     pthread
     m
 )

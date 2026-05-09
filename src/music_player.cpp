@@ -291,7 +291,7 @@ void update(float dt) {
         }
     }
 
-    // Update marquees (mirror music_player.lua update tail)
+    // Update marquees.
     int info_w = (int)(g_app.screen_w * 0.65f);
     if (s.marquees.count("title"))  s.marquees["title"].max_width  = info_w;
     if (s.marquees.count("artist")) s.marquees["artist"].max_width = info_w;
@@ -316,5 +316,6 @@ const Tags& next_tags() { return s.next_tags; }
 const float* pcm()    { return g_pcm.empty() ? nullptr : g_pcm.data(); }
 int pcm_count()       { return (int)g_pcm.size(); }
 int pcm_pos()         { return g_pcm_pos; }
+int pcm_sample_rate() { return g_pcm_sample_rate; }
 
 } // namespace music_player

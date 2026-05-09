@@ -1,4 +1,4 @@
-// Port of ui.lua. Direct mapping. No shader; gloss icon drawn plain (per anti-drift constraint).
+// UI primitives: glow text, marquee, toasts, progress bars, indexing popup.
 #include "ui.h"
 #include "assets.h"
 #include "render.h"

@@ -1,5 +1,3 @@
-// Port of settings.lua. Bug fixed: in original, force_reindex_once block was
-// nested inside vol_bright_control's table (settings.lua:154-160). Separated here.
 #include "settings.h"
 #include "categories.h"
 #include "persist.h"

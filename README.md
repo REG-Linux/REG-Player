@@ -1,6 +1,6 @@
 # REG-Player
 
-XMB-style media player for [REG-Linux](https://github.com/REG-Linux/REG-Linux) handhelds. C++17 / SDL3 / GLES2. Faithful port of [XMPlayer](https://github.com/atalaygrgn/XMPlayer) (Lua/Love2D) — same layout, same constants, same behaviour — extended with native chiptune subsystem and embedded video.
+XMB-style media player for [REG-Linux](https://github.com/REG-Linux/REG-Linux) handhelds. C++17 / SDL3 / GLES2. Inspired by [XMPlayer](https://github.com/atalaygrgn/XMPlayer) (Lua/Love2D); reimplemented in native C++ with a native chiptune subsystem and embedded video.
 
 Default scan root: `/userdata/medias`. Falls back to `~/Music`, `~/Videos`, `~/Pictures`.
 
@@ -10,7 +10,7 @@ Default scan root: `/userdata/medias`. Falls back to `~/Music`, `~/Videos`, `~/P
 
 - XMB cross-bar navigation (Settings · Photo · Music · Video · Files)
 - Music player: cover art, marquee titles, playlist, repeat-one, shuffle, auto-sleep
-- Visualizers: PSP-style waves, audio waveform, frequency bars
+- Visualizers: PSP-style waves, audio waveform, real FFT spectrum bars (50 Hz–12 kHz, log-binned)
 - Embedded video via libmpv render API (no fork-out, no flicker)
 - Image viewer with zoom + pan
 - Theme system (3 themes × 8 accent colours), particle effects toggle, wallpaper picker
@@ -97,13 +97,12 @@ Full attribution: [`NOTICES.md`](NOTICES.md).
 ## Layout
 
 ```
-src/             — one .cpp + .h per Lua module (snake_case, names preserved)
-third_party/     — bundled deps (single-header + StSound + cSID-light)
+src/             — C++ source
+third_party/     — bundled deps (single-header + StSound + cSID-light + kissfft)
 assets/          — fonts, icons, default wallpaper, sfx
 cmake/           — toolchain files (aarch64-multiarch)
 packaging/       — .desktop, manpage, launch.sh
 docs/            — CROSSCOMPILE.md
-ANTI_DRIFT.md    — port rules
 NOTICES.md       — third-party attributions
 ```
 
@@ -120,7 +119,7 @@ NOTICES.md       — third-party attributions
 
 ## Status
 
-**v0.1.0** — feature-complete vs. upstream XMPlayer + native extras. All Lua modules ported 1:1 per `ANTI_DRIFT.md`. Both amd64 and aarch64 binaries build clean.
+**v0.1.x** — feature-complete with extras over the original (chiptune subsystem, embedded video, Opus). Both amd64 and aarch64 binaries build clean.
 
 ### Deviations from upstream Lua (intentional)
 

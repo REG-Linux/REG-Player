@@ -1,4 +1,3 @@
-// Port of xmb.lua. Same constants, same control flow.
 #include "xmb.h"
 #include "assets.h"
 #include "browser.h"

@@ -59,7 +59,6 @@ void load() {
         SDL_Log("TTF_Init failed: %s", SDL_GetError());
     }
 
-    // Icons (mirror assets.lua list)
     load_icon("folder", "folder.png");
     load_icon("video", "video.png");
     load_icon("music", "music.png");
@@ -97,8 +96,7 @@ void load() {
     load_icon("brightness", "bulb.png");
     load_icon("settings", "settings.png");
 
-    // Category icons (cat_<id>) — assets.lua does this from categories list.
-    // We mirror.
+    // Category icon aliases.
     images["cat_settings"] = images["settings"];
     images["cat_photo"]    = images["photo"];
     images["cat_music"]    = images["music"];

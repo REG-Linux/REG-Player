@@ -34,6 +34,7 @@ Located under `third_party/`. Each preserves its original license.
 | stb_image | MIT / public domain | https://github.com/nothings/stb |
 | stb_image_write | MIT / public domain | https://github.com/nothings/stb |
 | nlohmann/json | MIT | https://github.com/nlohmann/json |
+| kissfft | BSD-3-Clause | https://github.com/mborgerding/kissfft |
 | StSound (Atari ST YM) | LGPL-2.1 | https://github.com/arnaud-carre/StSound |
 | cSID-light (C64 SID) | WTFPL | by Hermit (Mihaly Horvath), 2017 |
 
